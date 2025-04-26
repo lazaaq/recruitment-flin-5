@@ -1,0 +1,86 @@
+{
+    "info": {
+      "name": "Recruitment FLIN 5",
+      "description": "API documentation.",
+      "version": "1.0.0"
+    },
+    "endpoints": [
+      {
+        "name": "Register User",
+        "method": "POST",
+        "url": "/register",
+        "description": "Register a new user.",
+        "request_body": {
+          "Content-Type": "application/json",
+          "example": {
+            "username": "string",
+            "password": "string"
+          }
+        },
+        "responses": [
+          {
+            "status": 201,
+            "description": "User registered successfully",
+            "example": {
+              "message": "User registered successfully"
+            }
+          },
+          {
+            "status": 400,
+            "description": "Bad Request"
+          }
+        ]
+      },
+      {
+        "name": "Login User",
+        "method": "POST",
+        "url": "/login",
+        "description": "Authenticate user and return JWT token.",
+        "request_body": {
+          "Content-Type": "application/json",
+          "example": {
+            "username": "string",
+            "password": "string"
+          }
+        },
+        "responses": [
+          {
+            "status": 200,
+            "description": "Login successful",
+            "example": {
+                "message": "Login successful",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwidXNlcm5hbWUiOiJsYW5hIiwiaWF0IjoxNzQ1Njg1NDgwLCJleHAiOjE3NDU2ODkwODB9.BuThM-n3xU2qBPAQ0dTUvdYckpmqP2QSJ7RFLEpPnyM"
+            }
+          },
+          {
+            "status": 401,
+            "description": "Unauthorized - Invalid credentials"
+          }
+        ]
+      },
+      {
+        "name": "Get User Profile",
+        "method": "GET",
+        "url": "/profile",
+        "description": "Fetch the authenticated user's profile data (JWT token required).",
+        "headers": {
+          "Authorization": "Bearer jwt-token-string"
+        },
+        "responses": [
+          {
+            "status": 200,
+            "description": "Profile data fetched successfully",
+            "example": {
+                "id": "integer",
+                "username": "string"
+            }
+          },
+          {
+            "status": 401,
+            "description": "Unauthorized - No token or invalid token"
+          }
+        ]
+      }
+    ]
+  }
+  
